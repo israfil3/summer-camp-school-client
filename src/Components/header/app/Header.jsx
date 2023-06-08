@@ -18,6 +18,7 @@ import logo8 from '../img/1920x960_Quintet_1.jpg'
 import './header.css'
 
 import { EffectFade, Navigation, Pagination } from "swiper";
+import StudentClass from "../SchoolClasses/StudentClass";
 
 const Header = () => {
     return (
@@ -55,6 +56,9 @@ const Header = () => {
           <img className="w-[700px]" src={logo3} />
           </SwiperSlide>
         </Swiper>
+       </div>
+       <div className="">
+          <StudentClass></StudentClass>
        </div>
       </>
     );

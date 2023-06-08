@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 const Teacher = () => {
     const [teacher,setTeacher] = useState([]);
     useEffect(()=>{
-        fetch('http://localhost:5000/teacher')
+        fetch('http://localhost:5000/classes')
         .then(res => res.json())
         .then(data => setTeacher(data))
     },[])
@@ -22,8 +22,8 @@ const Teacher = () => {
                             <img src={tc.img} alt="photos" className="rounded-xl w-96 h-96" />
                         </figure>
                         <div className="card-body items-center text-center">
-                            <h2 className="card-title">{tc.name}</h2>
-                            <p>{tc.email}</p>
+                            <h2 className="card-title">Instructor Name: {tc.instructor_name}</h2>
+                            <p>Instructor Email: {tc.email}</p>
                             <div className="card-actions">
                             </div>
                         </div>

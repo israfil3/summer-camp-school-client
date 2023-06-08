@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
 import { FaWallet,FaBookOpen,FaBookMedical } from 'react-icons/fa';
 
 
@@ -8,6 +8,7 @@ const Dashboard = () => {
         <div className="drawer lg:drawer-open">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content flex flex-col items-center justify-center">
+            <Outlet></Outlet>
             {/* Page content here */}
             <label htmlFor="my-drawer-2" className="btn btn-primary drawer-button lg:hidden">Open Dashboard</label>
         

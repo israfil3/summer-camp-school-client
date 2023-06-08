@@ -8,6 +8,9 @@ import Teacher from './Components/instructors/Teacher.jsx';
 import Header from './Components/header/app/Header.jsx';
 import Class from './Components/class/Class.jsx';
 import Dashboard from './Components/dasborad/Dashboard.jsx';
+import MyClass from './Components/Dasbord/myclass/MyClass.jsx';
+import HomeClass from './Components/Dasbord/homeClass/HomeClass.jsx';
+
 
 const router = createBrowserRouter([
   {
@@ -40,6 +43,10 @@ const router = createBrowserRouter([
           path:'home',
           element:<Header></Header>
         }, 
+        {
+          path:'myClass',
+          element:<MyClass></MyClass>
+        }
   ]
  }
 ]);

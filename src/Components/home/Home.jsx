@@ -14,10 +14,10 @@ const Home = () => {
                   </label>
                   <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
                       <div className='grid gap-y-5'>
-                         <Link className="btn btn-outline btn-secondary" to={'home'}>Home</Link>
-                         <Link className="btn btn-outline btn-success">Instructors</Link>
-                         <Link className="btn btn-outline btn-secondary">Classes</Link>
-                         <Link className="btn btn-outline btn-secondary">Dashboard</Link>
+                      <Link className="btn btn-outline btn-secondary" to={'home'}>Home</Link>
+                      <Link className="btn btn-outline btn-success" to={'instructors'}>Instructors</Link>
+                      <Link className="btn btn-outline btn-secondary" to={'classes'}>Classes</Link>
+                      <Link className="btn btn-outline btn-secondary" to={'dashboard'}>Dashboard</Link>
                        </div>
                   </ul>
                 </div>
