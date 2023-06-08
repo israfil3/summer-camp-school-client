@@ -7,6 +7,7 @@ import {createBrowserRouter,RouterProvider,} from "react-router-dom";
 import Teacher from './Components/instructors/Teacher.jsx';
 import Header from './Components/header/app/Header.jsx';
 import Class from './Components/class/Class.jsx';
+import Dashboard from './Components/dasborad/Dashboard.jsx';
 
 const router = createBrowserRouter([
   {
@@ -28,9 +29,19 @@ const router = createBrowserRouter([
      {
       path:'classes',
       element:<Class></Class>
-     }
+     },
   ]
   },
+  {
+    path:'dashboard',
+    element:<Dashboard></Dashboard>,
+    children:[
+        {
+          path:'home',
+          element:<Header></Header>
+        }, 
+  ]
+ }
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(

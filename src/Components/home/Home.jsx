@@ -28,7 +28,7 @@ const Home = () => {
                       <Link className="btn btn-outline btn-secondary" to={'home'}>Home</Link>
                       <Link className="btn btn-outline btn-success" to={'instructors'}>Instructors</Link>
                       <Link className="btn btn-outline btn-secondary" to={'classes'}>Classes</Link>
-                      <Link className="btn btn-outline btn-secondary">Dashboard</Link>
+                      <Link className="btn btn-outline btn-secondary" to={'dashboard'}>Dashboard</Link>
                   </div>
               </div>
               <div className="navbar-end">
