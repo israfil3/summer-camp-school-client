@@ -10,6 +10,8 @@ import Class from './Components/class/Class.jsx';
 import Dashboard from './Components/dasborad/Dashboard.jsx';
 import MyClass from './Components/Dasbord/myclass/MyClass.jsx';
 import HomeClass from './Components/Dasbord/homeClass/HomeClass.jsx';
+import Sing from './Components/sing/Sing.jsx';
+import Login from './Components/login/Login.jsx';
 
 
 const router = createBrowserRouter([
@@ -33,6 +35,14 @@ const router = createBrowserRouter([
       path:'classes',
       element:<Class></Class>
      },
+     {
+      path:'sing',
+      element:<Sing></Sing>
+     },
+     {
+      path:'login',
+      element:<Login></Login>
+     }
   ]
   },
   {

@@ -32,7 +32,7 @@ const Home = () => {
                   </div>
               </div>
               <div className="navbar-end">
-                <a className="btn btn-outline btn-success">Login</a>
+                <Link className="btn btn-outline btn-success" to={'login'}>Log in</Link>
               </div>
             </div>
         
