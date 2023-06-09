@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useState } from 'react';
-import {GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import {GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, getRedirectResult, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signInWithRedirect, } from "firebase/auth";
 import { app } from '../../Firebase/Firebase.config';
 
 
@@ -24,16 +24,23 @@ const AuthProvider = ({children}) => {
     }
 
     const googleSing = () => {
+        setLoader(true)
         return signInWithPopup(auth,provider)
     }
 
+    const googleLogin = () => {
+        setLoader(true)
+       return getRedirectResult(auth);
+    }
+
     useEffect(()=> {
-        unsubscribe = onAuthStateChanged(auth, currentUser =>{
+       const unsubscribe = onAuthStateChanged (auth, currentUser =>{
             setUser(currentUser);
             setLoader(false)
         });
-        return ()=> {
-            return unsubscribe()
+        return () => {
+            return  unsubscribe()
+            
         }
     },[])
 
@@ -42,11 +49,12 @@ const AuthProvider = ({children}) => {
         loader,
         createUser,
         singUp,
-        googleSing
+        googleSing,
+        googleLogin
     }
     return (
         <AuthContext.Provider value={authInfo}>
-
+            {children}
         </AuthContext.Provider>
     );
 };

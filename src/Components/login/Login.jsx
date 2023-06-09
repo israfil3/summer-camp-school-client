@@ -1,12 +1,43 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './login.css'
 import { Link } from 'react-router-dom';
 import { FaGoogle } from 'react-icons/fa';
+import { AuthContext } from '../provider/AuthProvider';
+import { GoogleAuthProvider } from 'firebase/auth';
 
 const Login = () => {
+    const {singUp,googleLogin} = useContext(AuthContext)
+    const singMethod = (event) => {
+        event.preventDefault()
+        const form = event.target;
+        const email = form.email.value;
+        const password = form.password.value;
+        const data = {email,password};
+        console.log(data)
+        singUp(email,password)
+        .then(result => {
+            const user = result.user;
+            console.log(user);
+        })
+        .then(error => {
+            const errorMessage = error.message;
+            console.log(errorMessage)
+        })
+    }
+    const googleMethod = () => {
+        googleLogin()
+        .then((result) => {
+            const user = result.user;
+            console.log(user)
+          }).catch((error) => {
+            const errorMessage = error.message;
+            console.log(errorMessage)
+          });
+        
+    }
     return (
         <div className='bg-red-100'>
-            <form className='form-area text-center '>
+            <form onSubmit={singMethod} className='form-area text-center '>
                 <input type="email" name="email" id="email"  placeholder='Entry your Email'/><br />
                 <input type="password" name="password" id="password"  placeholder='Entry your password' required/><br />
                 <input className='btn my-5 btn-outline btn-error' type="submit" value="Login" /><br />
@@ -14,7 +45,7 @@ const Login = () => {
                 <hr className='border-4 my-5 w-48 mx-auto border-green-500'/>
             </form>
             <div className="mx-auto text-center">
-                <button  className='btn btn-outline btn-error' ><FaGoogle className='mx-3 text-2xl text-center'/>Login with Google</button><br /><br />
+                <button onClick={googleMethod} className='btn btn-outline btn-error' ><FaGoogle className='mx-3 text-2xl text-center'/>Login with Google</button><br /><br />
             </div>
         </div>
     );
