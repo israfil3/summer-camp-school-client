@@ -12,6 +12,7 @@ import MyClass from './Components/Dasbord/myclass/MyClass.jsx';
 import HomeClass from './Components/Dasbord/homeClass/HomeClass.jsx';
 import Sing from './Components/sing/Sing.jsx';
 import Login from './Components/login/Login.jsx';
+import AuthProvider from './Components/provider/AuthProvider.jsx';
 
 
 const router = createBrowserRouter([
@@ -62,7 +63,9 @@ const router = createBrowserRouter([
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
+  <AuthProvider>
+      <React.StrictMode>
         <RouterProvider router={router} />
-  </React.StrictMode>,
+      </React.StrictMode>,
+  </AuthProvider>
 )
