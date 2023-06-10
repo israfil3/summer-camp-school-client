@@ -7,7 +7,7 @@ import useCart from '../lodeCart/UseCart';
 
 const SubClass = ({ck}) => {
     const {user} = useContext(AuthContext);
-    const [refetch] = useCart();
+    const [,refetch] = useCart();
     const navigate = useNavigate();
     const location = useLocation();
     const {img,class_name,instructor_name,available_seats,price,_id} = ck;

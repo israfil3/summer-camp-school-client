@@ -1,5 +1,6 @@
 import React from 'react';
 import useCart from '../../lodeCart/UseCart';
+import { FaMoneyCheck, FaTrashAlt } from 'react-icons/fa';
 
 const MyClass = () => {
     let index = 0;
@@ -18,9 +19,10 @@ const MyClass = () => {
                 <thead>
                 <tr>
                     <th>No</th>
-                    <th>Class Name</th>
                     <th>Instructor img</th>
+                    <th>Class Name</th>
                     <th>Available seats</th>
+                    <th>Price</th>
                     <th>Delete</th>
                     <th>Pay</th>
                 </tr>
@@ -43,11 +45,12 @@ const MyClass = () => {
                         <div className="font-bold">{carts.instructor_name}</div>
                         </td>
                         <td>{carts.available_seats}</td>
+                        <td>{carts.price}$</td>
                         <th>
-                         <button className="btn btn-ghost btn-xs">Delete</button>
+                         <button className="btn btn-ghost btn-xs"> <FaTrashAlt></FaTrashAlt> Delete</button>
                         </th>
                         <th>
-                            <button className="btn btn-ghost btn-xs">Pay</button>
+                            <button className="btn btn-ghost btn-xs"><FaMoneyCheck></FaMoneyCheck> Pay</button>
                         </th>
                     </tr>
                         )
