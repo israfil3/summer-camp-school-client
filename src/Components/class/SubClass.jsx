@@ -13,7 +13,7 @@ const SubClass = ({ck}) => {
     const {img,class_name,instructor_name,available_seats,price,_id} = ck;
     const SelectClass =() => {
         if(user && user.email){
-            const oderItem = {itemId: _id,img,class_name,instructor_name,available_seats,price,email: user.email}
+            const oderItem = {img,class_name,instructor_name,available_seats,price,email: user.email}
             fetch(`http://localhost:5000/carts`,{
                 method:"POST",
                 headers:{

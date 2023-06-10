@@ -7,7 +7,7 @@ import Swal from 'sweetalert2';
 
 
 const Sing = () => {
-    const {createUser,googleSing} = useContext(AuthContext)
+    const {createUser,googleSing,updateUser} = useContext(AuthContext)
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || '/';
@@ -39,15 +39,31 @@ const Sing = () => {
             createUser(email,password) 
             .then(result => {
                 const user = result.user;
-                Swal.fire({
-                    position: 'center',
-                    icon: 'success',
-                    title: 'Sing up successful',
-                    showConfirmButton: false,
-                    timer: 1500
-                  });
-                  navigate(from,{replace: true})
-                  event.target.reset();
+                updateUser(name,url)
+                .then(()=> {
+                    const userParson = {name: name, email: email}
+                    fetch('http://localhost:5000/parson',{
+                        method: 'POST',
+                        headers:{
+                            'content-type': 'application/json'
+                        },
+                        body:JSON.stringify(userParson)
+                    })
+                    .then(res => res.json())
+                    .then(data => {
+                        if(data.insertedId){
+                            Swal.fire({
+                                position: 'center',
+                                icon: 'success',
+                                title: 'Sing up successful',
+                                showConfirmButton: false,
+                                timer: 1500
+                              });
+                              navigate(from,{replace: true})
+                              event.target.reset();
+                        }
+                    })
+                })
             })
             .then(error => {
                 console.log(error)

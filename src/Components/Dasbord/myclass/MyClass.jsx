@@ -1,11 +1,27 @@
 import React from 'react';
 import useCart from '../../lodeCart/UseCart';
 import { FaMoneyCheck, FaTrashAlt } from 'react-icons/fa';
+import Swal from 'sweetalert2';
 
 const MyClass = () => {
-    let index = 0;
-    const [cart] = useCart();
+    const [cart,refetch] = useCart();
     console.log(cart)
+        const deleteParson = (items) => {
+            fetch(`http://localhost:5000/carts/${items._id}`,{
+                method: 'DELETE',
+            })
+            .then(res => res.json())
+            .then(data => {
+                refetch();
+                if(data.deletedCount > 0) {
+                    Swal.fire(
+                        'Deleted!',
+                        'Your Save items has been deleted.',
+                        'success'
+                      )
+                }
+            })
+        }
     return (
         <>
           <div>
@@ -29,37 +45,34 @@ const MyClass = () => {
                 </thead>
                 <tbody>
                     {
-                        cart.map((carts,index) => 
-                        <tr>
-                        <th>{index+1}</th>
-                        <td>
-                        <div className="flex items-center space-x-3">
-                            <div className="avatar">
-                            <div className="mask mask-squircle w-12 h-12">
-                                <img src={carts.img} alt="Avatar Tailwind CSS Component" />
+                        cart.map((items,index) => 
+                            <>
+                                <tr key={items._id}>
+                            <th>{index+1}</th>
+                            <td>
+                            <div className="flex items-center space-x-3">
+                                <div className="avatar">
+                                <div className="mask mask-squircle w-12 h-12">
+                                    <img src={items.img} alt="Avatar Tailwind CSS Component" />
+                                </div>
+                                </div>
                             </div>
-                            </div>
-                        </div>
-                        </td>
-                        <td>
-                        <div className="font-bold">{carts.instructor_name}</div>
-                        </td>
-                        <td>{carts.available_seats}</td>
-                        <td>{carts.price}$</td>
-                        <th>
-                         <button className="btn btn-ghost btn-xs"> <FaTrashAlt></FaTrashAlt> Delete</button>
-                        </th>
-                        <th>
-                            <button className="btn btn-ghost btn-xs"><FaMoneyCheck></FaMoneyCheck> Pay</button>
-                        </th>
-                    </tr>
+                            </td>
+                            <td>
+                            <div className="font-bold">{items.instructor_name}</div>
+                            </td>
+                            <td>{items.available_seats}</td>
+                            <td>{items.price}$</td>
+                            <td>
+                              <button onClick={()=>deleteParson(items)} className="btn btn-ghost btn-xs"> <FaTrashAlt></FaTrashAlt> Delete</button>
+                            </td>
+                            <td>
+                                <button className="btn btn-ghost btn-xs"><FaMoneyCheck></FaMoneyCheck> Pay</button>
+                            </td>
+                            </tr>   
+                            </>                   
                         )
                     }
-  
-                {/* row 2 */}
-
- 
-
                 </tbody>
             </table>
 </div>

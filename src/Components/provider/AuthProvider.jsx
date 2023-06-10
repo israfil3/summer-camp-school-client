@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useState } from 'react';
-import {GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, getRedirectResult, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signInWithRedirect, } from "firebase/auth";
+import {GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, getRedirectResult, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, updateProfile, } from "firebase/auth";
 import { app } from '../../Firebase/Firebase.config';
 
 
@@ -33,6 +33,11 @@ const AuthProvider = ({children}) => {
        return getRedirectResult(auth);
     }
 
+     const updateUser = (name,photo) => {
+        return updateProfile(auth.currentUser, {
+            displayName: name, photoURL: photo
+        })
+     }
     useEffect(()=> {
        const unsubscribe = onAuthStateChanged (auth, currentUser =>{
             setUser(currentUser);
@@ -50,7 +55,8 @@ const AuthProvider = ({children}) => {
         createUser,
         singUp,
         googleSing,
-        googleLogin
+        googleLogin,
+        updateUser
     }
     return (
         <AuthContext.Provider value={authInfo}>

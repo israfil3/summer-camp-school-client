@@ -3,10 +3,10 @@ import { useContext } from 'react';
 import { AuthContext } from '../provider/AuthProvider';
 const useCart = (email) => {
     const {user} = useContext(AuthContext);
-    const { refetch, data: carts =[]  } = useQuery({
+    const { refetch, data: carts = []  } = useQuery({
         queryKey: ['carts',user?.email],
         queryFn: async () => {
-            const res =fetch(`http://localhost:5000/carts?email=${user.email}`);
+            const res = fetch(`http://localhost:5000/carts?email=${user.email}`);
             return (await res).json();
         }
       })
