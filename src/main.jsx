@@ -13,7 +13,12 @@ import HomeClass from './Components/Dasbord/homeClass/HomeClass.jsx';
 import Sing from './Components/sing/Sing.jsx';
 import Login from './Components/login/Login.jsx';
 import AuthProvider from './Components/provider/AuthProvider.jsx';
+import PrivateRoute from './Components/PrivateRoute.jsx';
+import Format from './Components/data/Format.jsx';
 
+import {QueryClient,QueryClientProvider,} from'@tanstack/react-query'
+
+const queryClient = new QueryClient()
 
 const router = createBrowserRouter([
   {
@@ -43,7 +48,11 @@ const router = createBrowserRouter([
      {
       path:'login',
       element:<Login></Login>
-     }
+     },
+    //  {
+    //   path:'class',
+    //   element:<PrivateRoute><Class></Class></PrivateRoute>
+    //  }
   ]
   },
   {
@@ -63,9 +72,11 @@ const router = createBrowserRouter([
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <AuthProvider>
+   <AuthProvider>
       <React.StrictMode>
-        <RouterProvider router={router} />
+         <QueryClientProvider client={queryClient}>
+              <RouterProvider router={router} />
+         </QueryClientProvider>
       </React.StrictMode>,
-  </AuthProvider>
+   </AuthProvider>
 )

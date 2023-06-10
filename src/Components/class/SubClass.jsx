@@ -1,9 +1,55 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../provider/AuthProvider';
+import Swal from 'sweetalert2';
+import useCart from '../lodeCart/UseCart';
+
 
 const SubClass = ({ck}) => {
+    const {user} = useContext(AuthContext);
+    const [refetch] = useCart();
+    const navigate = useNavigate();
+    const location = useLocation();
     const {img,class_name,instructor_name,available_seats,price,_id} = ck;
-    const SelectClass =(_id) => {
-        console.log(_id)
+    const SelectClass =() => {
+        if(user && user.email){
+            const oderItem = {itemId: _id,img,class_name,instructor_name,available_seats,price,email: user.email}
+            fetch(`http://localhost:5000/carts`,{
+                method:"POST",
+                headers:{
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify(oderItem)
+            })
+            .then(res => res.json())
+            .then(data => {
+                if(data.insertedId){
+                    refetch();
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'item has been saved',
+                        showConfirmButton: false,
+                        timer: 1500
+                      })
+                }
+                
+            })
+        }
+        else {
+            Swal.fire({
+                title: 'Login First',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Login Now'
+              }).then((result) => {
+                if (result.isConfirmed) {
+                    navigate('/login', {state: {from: location}})
+                }
+              })
+        }
     }
     return (
         <div>
@@ -18,7 +64,7 @@ const SubClass = ({ck}) => {
                             <p>Available Seats: {available_seats}</p>
                             <p>price: {price}$</p>
                             <div className="card-actions">
-                                 <button onClick={()=>SelectClass(ck)} className="btn btn-outline btn-primary">Select</button>
+                                <Link onClick={()=>SelectClass()} className="btn btn-outline btn-primary">Select</Link>
                             </div>
                         </div>
 

@@ -1,12 +1,15 @@
 import React, { useContext } from 'react';
 import './login.css'
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FaGoogle } from 'react-icons/fa';
 import { AuthContext } from '../provider/AuthProvider';
 import { GoogleAuthProvider } from 'firebase/auth';
 
 const Login = () => {
     const {singUp,googleLogin} = useContext(AuthContext)
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || '/';
     const singMethod = (event) => {
         event.preventDefault()
         const form = event.target;
@@ -18,6 +21,8 @@ const Login = () => {
         .then(result => {
             const user = result.user;
             console.log(user);
+            navigate(from,{replace: true})
+            event.target.reset();
         })
         .then(error => {
             const errorMessage = error.message;

@@ -1,12 +1,17 @@
 import React, { useContext } from 'react';
 import { FaGoogle } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate} from 'react-router-dom';
 import './sing.css'
 import { AuthContext } from '../provider/AuthProvider';
 import Swal from 'sweetalert2';
 
+
 const Sing = () => {
     const {createUser,googleSing} = useContext(AuthContext)
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || '/';
+
     const submitParson = (event) => {
             event.preventDefault()
             const form = event.target;
@@ -34,7 +39,6 @@ const Sing = () => {
             createUser(email,password) 
             .then(result => {
                 const user = result.user;
-                console.log(user);
                 Swal.fire({
                     position: 'center',
                     icon: 'success',
@@ -42,6 +46,7 @@ const Sing = () => {
                     showConfirmButton: false,
                     timer: 1500
                   });
+                  navigate(from,{replace: true})
                   event.target.reset();
             })
             .then(error => {
@@ -54,6 +59,7 @@ const Sing = () => {
         .then(result => {
             const parson = result.user;
             console.log(parson)
+            navigate(from,{replace: true});
         })
         .then(error => {
             const errorMessage = error.message
