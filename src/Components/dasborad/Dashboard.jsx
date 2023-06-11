@@ -1,11 +1,10 @@
-import React from 'react';
 import { Link, Outlet } from 'react-router-dom';
 import { FaWallet,FaBookOpen,FaBookMedical } from 'react-icons/fa';
-
+import MainAdmin from '../mainAdmin/MainAdmin';
 
 const Dashboard = () => {
-        const admin = true;
-        const userRoll = 'admin';
+    // const admin = true
+    const [isAdmin] = MainAdmin();
     return (
         <div className="drawer lg:drawer-open">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
@@ -20,7 +19,7 @@ const Dashboard = () => {
             <ul className="menu p-4 w-80 h-full bg-base-200 text-base-content">
             {/* Sidebar content here */}
             {
-                admin?<>
+             isAdmin?<>
                       <h1 className='text-center text-3xl my-3 '>Admin Panel</h1>
                       <Link className="btn btn-outline btn-secondary" to={'adminClass'}> <FaBookMedical></FaBookMedical>Manage Classes</Link>
                       <Link className="btn btn-outline btn-secondary my-5" to={'adminUser'}> <FaBookOpen></FaBookOpen>Manage Users</Link>
@@ -35,6 +34,7 @@ const Dashboard = () => {
                     <Link className="btn btn-outline btn-secondary" to={'/home'}>Home</Link>
                 </>
             }
+
            
             </ul>
         </div>

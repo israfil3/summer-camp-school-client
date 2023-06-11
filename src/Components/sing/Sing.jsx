@@ -7,7 +7,7 @@ import Swal from 'sweetalert2';
 
 
 const Sing = () => {
-    const {createUser,googleSing,updateUser} = useContext(AuthContext)
+    const {createUser,googleSing,updateUser,singOut} = useContext(AuthContext)
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || '/';
@@ -91,8 +91,15 @@ const Sing = () => {
           
         })
         .then(error => {
-            const errorMessage = error.message
-            console.log(errorMessage)
+            console.log(error)
+        })
+    };
+
+    const sinout = () => {
+        singOut()
+        .then()
+        .catch(error => {
+            console.log(error)
         })
     }
     return (
