@@ -3,10 +3,9 @@ import './login.css'
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FaGoogle } from 'react-icons/fa';
 import { AuthContext } from '../provider/AuthProvider';
-import { GoogleAuthProvider } from 'firebase/auth';
 
 const Login = () => {
-    const {singUp,googleLogin} = useContext(AuthContext)
+    const {singUp,googleSing} = useContext(AuthContext)
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || '/';
@@ -30,14 +29,29 @@ const Login = () => {
         })
     }
     const googleMethod = () => {
-        googleLogin()
-        .then((result) => {
-            const user = result.user;
-            console.log(user)
-          }).catch((error) => {
-            const errorMessage = error.message;
-            console.log(errorMessage)
-          });
+        googleSing()
+        .then(result => {
+            const validParson = result.user;
+            console.log(validParson)
+            const userParson = {name:validParson.displayName, email:validParson.email}
+                    fetch('http://localhost:5000/parson',{
+                        method: 'POST',
+                        headers:{
+                            'content-type': 'application/json'
+                        },
+                        body:JSON.stringify(userParson)
+                    })
+                    .then(res => res.json())
+                    .then(data => {
+                        if(data.insertedId){
+                            navigate(from,{replace: true});
+                        }
+                    })
+          
+        })
+        .then(error => {
+            console.log(error)
+        })
         
     }
     return (

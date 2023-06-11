@@ -27,12 +27,6 @@ const AuthProvider = ({children}) => {
         setLoader(true)
         return signInWithPopup(auth,provider)
     }
-
-    const googleLogin = () => {
-        setLoader(true)
-       return getRedirectResult(auth);
-    }
-
      const updateUser = (name,photo) => {
         return updateProfile(auth.currentUser, {
             displayName: name, photoURL: photo
@@ -55,7 +49,6 @@ const AuthProvider = ({children}) => {
         createUser,
         singUp,
         googleSing,
-        googleLogin,
         updateUser
     }
     return (

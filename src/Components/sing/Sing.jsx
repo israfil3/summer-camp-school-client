@@ -73,9 +73,22 @@ const Sing = () => {
     const googleHandle = () => {
         googleSing()
         .then(result => {
-            const parson = result.user;
-            console.log(parson)
-            navigate(from,{replace: true});
+            const validParson = result.user;
+            const userParson = {name: validParson.displaysName, email:validParson.email}
+                    fetch('http://localhost:5000/parson',{
+                        method: 'POST',
+                        headers:{
+                            'content-type': 'application/json'
+                        },
+                        body:JSON.stringify(userParson)
+                    })
+                    .then(res => res.json())
+                    .then(data => {
+                        if(data.insertedId){
+                            navigate(from,{replace: true});
+                        }
+                    })
+          
         })
         .then(error => {
             const errorMessage = error.message
