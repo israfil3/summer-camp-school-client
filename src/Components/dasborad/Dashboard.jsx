@@ -22,8 +22,8 @@ const Dashboard = () => {
             {
                 admin?<>
                       <h1 className='text-center text-3xl my-3 '>Admin Panel</h1>
-                      <Link className="btn btn-outline btn-secondary" to={'myClass'}> <FaBookMedical></FaBookMedical>Manage Classes</Link>
-                      <Link className="btn btn-outline btn-secondary my-5" to={'enrolClass'}> <FaBookOpen></FaBookOpen>Manage Users</Link>
+                      <Link className="btn btn-outline btn-secondary" to={'adminClass'}> <FaBookMedical></FaBookMedical>Manage Classes</Link>
+                      <Link className="btn btn-outline btn-secondary my-5" to={'adminUser'}> <FaBookOpen></FaBookOpen>Manage Users</Link>
                       <div className="divider"></div> 
                       <Link className="btn btn-outline btn-secondary" to={'/home'}>Home</Link>
                 </>:<>

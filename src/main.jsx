@@ -17,6 +17,8 @@ import PrivateRoute from './Components/PrivateRoute.jsx';
 import Format from './Components/data/Format.jsx';
 
 import {QueryClient,QueryClientProvider,} from'@tanstack/react-query'
+import AdminClass from './Components/Dasbord/admin/AdminClass.jsx';
+import AdminUser from './Components/dasborad/adminUser/AdminUser.jsx';
 
 const queryClient = new QueryClient()
 
@@ -67,6 +69,14 @@ const router = createBrowserRouter([
           path:'myClass',
           element:<MyClass></MyClass>
         },
+        {
+          path:'adminClass',
+          element:<AdminClass></AdminClass>
+        },
+        {
+          path:'adminUser',
+          element:<AdminUser></AdminUser>
+        }
 
   ]
  }
