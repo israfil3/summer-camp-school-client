@@ -19,6 +19,9 @@ import Format from './Components/data/Format.jsx';
 import {QueryClient,QueryClientProvider,} from'@tanstack/react-query'
 import AdminClass from './Components/Dasbord/admin/AdminClass.jsx';
 import AdminUser from './Components/dasborad/adminUser/AdminUser.jsx';
+import AddClass from './Components/Dasbord/addClass/AddClass.jsx';
+import InClass from './Components/Dasbord/Inclass/InClass.jsx';
+import Payment from './Components/dasborad/payment/Payment.jsx';
 
 const queryClient = new QueryClient()
 
@@ -76,6 +79,18 @@ const router = createBrowserRouter([
         {
           path:'adminUser',
           element:<AdminUser></AdminUser>
+        },
+        {
+          path:'addClass',
+          element:<AddClass></AddClass>
+        },
+        {
+          path:'inClass',
+          element:<InClass></InClass>
+        },
+        {
+          path: 'payment',
+          element:<Payment></Payment>
         }
 
   ]

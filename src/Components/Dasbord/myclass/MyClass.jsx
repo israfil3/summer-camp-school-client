@@ -2,10 +2,14 @@ import React from 'react';
 import useCart from '../../lodeCart/UseCart';
 import { FaMoneyCheck, FaTrashAlt } from 'react-icons/fa';
 import Swal from 'sweetalert2';
+import { Elements } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
+import CheckoutForm from './Pamnet';
+
 
 const MyClass = () => {
     const [cart,refetch] = useCart();
-    console.log(cart)
+    const stripePromise = loadStripe(`${import.meta.env.VITE_pay}`);
         const deleteParson = (items) => {
             fetch(`http://localhost:5000/carts/${items._id}`,{
                 method: 'DELETE',
@@ -21,7 +25,8 @@ const MyClass = () => {
                       )
                 }
             })
-        }
+        };
+
     return (
         <>
           <div>
@@ -67,7 +72,19 @@ const MyClass = () => {
                               <button onClick={()=>deleteParson(items)} className="btn btn-ghost btn-xs"> <FaTrashAlt></FaTrashAlt> Delete</button>
                             </td>
                             <td>
-                                <button className="btn btn-ghost btn-xs"><FaMoneyCheck></FaMoneyCheck> Pay</button>
+                            <label htmlFor="my_modal_6" className="btn btn-ghost btn-xs"><FaMoneyCheck></FaMoneyCheck> Pay</label>
+                                    <input type="checkbox" id="my_modal_6" className="modal-toggle" />
+                                    <div className="modal">
+                                    <div className="modal-box">
+                                        <Elements stripe={stripePromise}>
+                                            <CheckoutForm></CheckoutForm>
+                                        </Elements>
+                                     <div className="modal-action">
+                                             <label htmlFor="my_modal_6" className="btn">Close!</label>
+                                        </div>
+                                    </div>
+                                 </div>
+                                    
                             </td>
                             </tr>   
                             </>                   

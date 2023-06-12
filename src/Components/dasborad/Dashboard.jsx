@@ -1,10 +1,12 @@
 import { Link, Outlet } from 'react-router-dom';
 import { FaWallet,FaBookOpen,FaBookMedical } from 'react-icons/fa';
 import MainAdmin from '../mainAdmin/MainAdmin';
+import InstructorInfo from '../instructor/InstructorInfo';
 
 const Dashboard = () => {
     // const admin = true
     const [isAdmin] = MainAdmin();
+    const [isInstructor] = InstructorInfo(); 
     return (
         <div className="drawer lg:drawer-open">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
@@ -18,6 +20,7 @@ const Dashboard = () => {
             <label htmlFor="my-drawer-2" className="drawer-overlay"></label> 
             <ul className="menu p-4 w-80 h-full bg-base-200 text-base-content">
             {/* Sidebar content here */}
+
             {
              isAdmin?<>
                       <h1 className='text-center text-3xl my-3 '>Admin Panel</h1>
@@ -25,7 +28,18 @@ const Dashboard = () => {
                       <Link className="btn btn-outline btn-secondary my-5" to={'adminUser'}> <FaBookOpen></FaBookOpen>Manage Users</Link>
                       <div className="divider"></div> 
                       <Link className="btn btn-outline btn-secondary" to={'/home'}>Home</Link>
-                </>:<>
+                </>:
+                isInstructor?
+                <>
+                    <h1 className='text-center text-3xl my-3 '>isInstructor</h1>
+                    <Link className="btn btn-outline btn-secondary" to={'addClass'}> <FaBookMedical></FaBookMedical>Add class</Link>
+                    <Link className="btn btn-outline btn-secondary my-5" to={'inClass'}> <FaBookOpen></FaBookOpen>  My Classes</Link>
+                    <div className="divider"></div> 
+                    <Link className="btn btn-outline btn-secondary" to={'/home'}>Home</Link>
+                </>
+                :
+                <>
+                  <>
                     <h1 className='text-center text-3xl my-3 '>Student Panel</h1>
                     <Link className="btn btn-outline btn-secondary" to={'myClass'}> <FaBookMedical></FaBookMedical> My Selected Classes</Link>
                     <Link className="btn btn-outline btn-secondary my-5" to={'enrolClass'}> <FaBookOpen></FaBookOpen>  My Enrolled Classes</Link>
@@ -33,7 +47,10 @@ const Dashboard = () => {
                     <div className="divider"></div> 
                     <Link className="btn btn-outline btn-secondary" to={'/home'}>Home</Link>
                 </>
+                
+                </>
             }
+
 
            
             </ul>
