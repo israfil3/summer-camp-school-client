@@ -53,7 +53,7 @@ const EnroleClass = () => {
                         </td>
                         <td>{enroll.site}</td>
                         <th>
-                            {enroll.price}
+                            {enroll.price}$
                         </th>
                             </tr>
                     )

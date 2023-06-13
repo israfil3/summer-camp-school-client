@@ -1,22 +1,40 @@
 import React, { useContext } from 'react';
 import './addClass.css'
 import { AuthContext } from '../../provider/AuthProvider';
+import AdminInfo from '../../adminInfo/AdminInfo';
+import InstructorInfo from '../../instructor/InstructorInfo';
+import Swal from 'sweetalert2';
 
 const AddClass = () => {
     const {user} = useContext(AuthContext)
+    const [axiosSecure] = AdminInfo();
+    const [isInstructor] = InstructorInfo(); 
 
     const addClassSubject = (event) => {
         event.preventDefault()
         const form = event.target;
-        const name = form.name.value;
-        const url = form.photo.value;
-        const inName = form.inName.value;
-        const inEmail = form.inEmail.value;
-        const seats = form.seats.value;
+        const class_name= form.name.value;
+        const img = form.photo.value;
+        const instructor_name = form.inName.value;
+        const email = form.inEmail.value;
+        const available_seats = form.seats.value;
         const price = form.price.value;
-        const data = {name,url,inName,inEmail,seats,price}
-        console.log(data)
-    }
+        const addClass = {class_name,img,instructor_name,email,available_seats,price}
+            axiosSecure.post('/classes',addClass)
+            .then(res => {
+                console.log(res.data)
+                if(res.data){
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Add class has been saved',
+                        showConfirmButton: false,
+                        timer: 1500
+                      })
+                      event.target.reset();
+                }
+            })
+        };
 
     return (
         <div className='my-10 p-10'>

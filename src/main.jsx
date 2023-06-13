@@ -5,7 +5,6 @@ import './index.css';
 
 import {createBrowserRouter,RouterProvider,} from "react-router-dom";
 import Teacher from './Components/instructors/Teacher.jsx';
-import Header from './Components/header/app/Header.jsx';
 import Class from './Components/class/Class.jsx';
 import Dashboard from './Components/dasborad/Dashboard.jsx';
 import MyClass from './Components/Dasbord/myclass/MyClass.jsx';
@@ -23,6 +22,7 @@ import AddClass from './Components/Dasbord/addClass/AddClass.jsx';
 import InClass from './Components/Dasbord/Inclass/InClass.jsx';
 import Payment from './Components/dasborad/payment/Payment.jsx';
 import EnroleClass from './Components/Dasbord/enrole/EnroleClass.jsx';
+import Header from './Components/Header/Header.jsx';
 
 const queryClient = new QueryClient()
 
