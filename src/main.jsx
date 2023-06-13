@@ -22,6 +22,7 @@ import AdminUser from './Components/dasborad/adminUser/AdminUser.jsx';
 import AddClass from './Components/Dasbord/addClass/AddClass.jsx';
 import InClass from './Components/Dasbord/Inclass/InClass.jsx';
 import Payment from './Components/dasborad/payment/Payment.jsx';
+import EnroleClass from './Components/Dasbord/enrole/EnroleClass.jsx';
 
 const queryClient = new QueryClient()
 
@@ -91,6 +92,10 @@ const router = createBrowserRouter([
         {
           path: 'payment',
           element:<Payment></Payment>
+        },
+        {
+          path:'enrolClass',
+          element:<EnroleClass></EnroleClass>
         }
 
   ]

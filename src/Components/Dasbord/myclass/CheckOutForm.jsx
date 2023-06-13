@@ -3,7 +3,8 @@ import '../css/pament.css'
 import { useContext, useEffect, useState } from "react";
 import AdminInfo from "../../adminInfo/AdminInfo";
 import { AuthContext } from "../../provider/AuthProvider";
-import { flushSync } from "react-dom";
+import Swal from "sweetalert2";
+
 
 const CheckoutForm = ({price,items}) => {
     const [axiosSecure] = AdminInfo();
@@ -71,24 +72,36 @@ const CheckoutForm = ({price,items}) => {
         setLoading(false)
         if(paymentIntent.status === 'succeeded'){
             setTransactionId( paymentIntent.id)
-            const transactionId = paymentIntent.id;
             const payment = {
                 email: user?.email,
                 name: user?.displayName,
+                instrName: items.instructor_name,
+                className:items.class_name,
+                img:items.img,
+                site:items.available_seats,
                 transactionId: paymentIntent.id,
                 price,
                 cartItems:items._id,
-                classItems:items.cartId,
             }
             axiosSecure.post('/payments', payment)
             .then(res => {
                 console.log(res.data)
+                if(res.data.insertedId){
+                  Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Your Payment Done',
+                    showConfirmButton: false,
+                    timer: 1500
+                  })
+                }
             })
          }
 
     };
   
     return (
+     <>
       <form onSubmit={handleSubmit}>
         <CardElement
           options={{
@@ -110,6 +123,8 @@ const CheckoutForm = ({price,items}) => {
           Pay
         </button>
       </form>
+          
+     </>
     );
   };
 
