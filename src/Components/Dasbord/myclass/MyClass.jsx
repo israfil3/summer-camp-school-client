@@ -2,13 +2,12 @@ import React from 'react';
 import useCart from '../../lodeCart/UseCart';
 import { FaMoneyCheck, FaTrashAlt } from 'react-icons/fa';
 import Swal from 'sweetalert2';
+import CheckoutForm from './CheckOutForm';
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
-import CheckoutForm from './Pamnet';
-
 
 const MyClass = () => {
-    const [cart,refetch] = useCart();
+    const [carts,refetch] = useCart();
     const stripePromise = loadStripe(`${import.meta.env.VITE_pay}`);
         const deleteParson = (items) => {
             fetch(`http://localhost:5000/carts/${items._id}`,{
@@ -50,7 +49,7 @@ const MyClass = () => {
                 </thead>
                 <tbody>
                     {
-                        cart.map((items,index) => 
+                        carts.map((items,index) => 
                             <>
                                 <tr key={items._id}>
                             <th>{index+1}</th>
@@ -76,9 +75,9 @@ const MyClass = () => {
                                     <input type="checkbox" id="my_modal_6" className="modal-toggle" />
                                     <div className="modal">
                                     <div className="modal-box">
-                                        <Elements stripe={stripePromise}>
-                                            <CheckoutForm></CheckoutForm>
-                                        </Elements>
+                                       <Elements stripe={stripePromise}>
+                                           <CheckoutForm price={items.price} items={items}></CheckoutForm>
+                                       </Elements>
                                      <div className="modal-action">
                                              <label htmlFor="my_modal_6" className="btn">Close!</label>
                                         </div>

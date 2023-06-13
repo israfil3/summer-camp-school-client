@@ -3,13 +3,14 @@ import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../provider/AuthProvider';
 import axios from 'axios';
 
+const axiosSecure = axios.create({
+    baseURL:'http://localhost:5000',
+});
 const AdminInfo = () => {
     const {singOut} = useContext(AuthContext)
     const navigate = useNavigate ;
 
-    const axiosSecure = axios.create({
-        baseURL:'http://localhost:5000',
-    });
+
     useEffect(()=>{
         axiosSecure.interceptors.request.use((config) => {
             const token = localStorage.getItem('jwt-token');
