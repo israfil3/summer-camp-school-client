@@ -6,7 +6,7 @@ import './home.css'
 const Home = () => {
     return (
         <>
-             <div className="navbar bg-green-100 px-10">
+        <div className="navbar bg-green-100 px-10 ">
               <div className="navbar-start">
                 <div className="dropdown">
                   <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -18,6 +18,7 @@ const Home = () => {
                       <Link className="btn btn-outline btn-success" to={'instructors'}>Instructors</Link>
                       <Link className="btn btn-outline btn-secondary" to={'classes'}>Classes</Link>
                       <Link className="btn btn-outline btn-secondary" to={'dashboard'}>Dashboard</Link>
+                      <Link to={'*'}></Link>
                        </div>
                   </ul>
                 </div>

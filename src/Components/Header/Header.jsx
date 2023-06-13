@@ -4,7 +4,7 @@ import './Header.css'
 const Header = () => {
     return (
         <>
-            <div className='w-[600px] h-[600px] mx-auto'>
+        <div className='w-[600px] h-[600px] mx-auto my-10'>
            <div className="carousel ">
                 <div id="item1" className="carousel-item w-full image-container">
                     <img src="https://img.freepik.com/free-vector/acoustic-guitar-concept-illustration_114360-12608.jpg?w=2000"  className="w-full"/>

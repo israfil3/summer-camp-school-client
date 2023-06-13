@@ -23,6 +23,7 @@ import InClass from './Components/Dasbord/Inclass/InClass.jsx';
 import Payment from './Components/dasborad/payment/Payment.jsx';
 import EnroleClass from './Components/Dasbord/enrole/EnroleClass.jsx';
 import Header from './Components/Header/Header.jsx';
+import Error from './Components/error/Error.jsx';
 
 const queryClient = new QueryClient()
 
@@ -30,6 +31,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <App></App>,
+    errorElement:<Error></Error>,
     children:[
       {
         path: '/',
