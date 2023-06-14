@@ -15,7 +15,6 @@ const SubClass = ({ck}) => {
     const [isAdmin] = MainAdmin();
     const [isInstructor] = InstructorInfo(); 
     const {img,class_name,instructor_name,available_seats,price,_id,studentCount} = ck;
-    const {isDisabled, setIsDisabled} = useState(false)
     const SelectClass =() => {
         if(user && user.email){
             const oderItem = {img,class_name,instructor_name,available_seats,price,email: user.email,cartId:_id}
@@ -37,7 +36,6 @@ const SubClass = ({ck}) => {
                         showConfirmButton: false,
                         timer: 1500
                       })
-                   isDisabled(true)   
                 }
                 
             })
@@ -72,9 +70,9 @@ const SubClass = ({ck}) => {
                             <p>price: {price}$</p>
                             <div className="card-actions">
                                {
-                                isAdmin?<button disabled>Select</button>: 
+                                isAdmin?<button className='btn' disabled>Select</button>: 
                                 isInstructor?<button className='btn' disabled>Select</button>:
-                                <Link onClick={()=>SelectClass()} disabled={isDisabled} className="btn btn-outline btn-primary">Select</Link>
+                                <Link onClick={()=>SelectClass()}  className="btn btn-outline btn-primary">Select</Link>
                                }
                             </div>
                         </div>

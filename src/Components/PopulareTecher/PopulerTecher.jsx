@@ -7,9 +7,10 @@ const PopulerTecher = () => {
         useEffect(()=>{
             axiosSecure('/classes')
             .then(res =>{
-                const sortedClasses = res.data.sort((a, b) => b.studentCount.length - a.studentCount.length);
+                const sortedClasses = res.data.sort((a, b) => b.studentCount - a.studentCount);
                 const topClasses = sortedClasses.slice(0, 6);
                 setPopular(topClasses);
+                console.log(topClasses)
             })
         },[])
     return (

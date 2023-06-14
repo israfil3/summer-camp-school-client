@@ -9,7 +9,7 @@ const PopularStudent = () => {
             axiosSecure('/classes')
             .then(res =>{
                 // setPopular(res.data)
-                const sortedClasses = res.data.sort((a, b) => b.studentCount.length - a.studentCount.length);
+                const sortedClasses = res.data.sort((a, b) => b.studentCount - a.studentCount);
                 // Get the top 6 classes
                 const topClasses = sortedClasses.slice(0, 6);
                 setPopular(topClasses);

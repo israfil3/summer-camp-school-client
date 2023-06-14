@@ -22,11 +22,11 @@ const Sing = () => {
             const url = form.url.value;
             const data = {name,email,password,conformPassword,url}
             console.log(data)
-            if(password.length < 6){
+            if (password.length < 6 || !password.match(/^(?=.*[A-Z])(?=.*[!@#$%^&*])/)){
                 return Swal.fire({
                     icon: 'error',
                     title: 'Oops...',
-                    text: 'at list password 6 character!',
+                    text: 'at list password 6 character && one capital letter and a special character',
                   })
             }
             if( password !== conformPassword) {
