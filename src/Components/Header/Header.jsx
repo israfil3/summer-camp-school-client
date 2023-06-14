@@ -1,10 +1,16 @@
 import React from 'react';
 import './Header.css'
+import PopularStudent from '../Popularr/PopularStudent';
+import PopulerTecher from '../PopulareTecher/PopulerTecher';
+import ExtraSection from '../extraSection/ExtraSection';
 
 const Header = () => {
     return (
         <>
-        <div className='w-[600px] h-[600px] mx-auto my-10'>
+        <div className="my-7">
+            <ExtraSection></ExtraSection>
+        </div>
+        <div className='lg:w-[600px] lg:h-[600px] mx-auto lg:my-[50px]'>
            <div className="carousel ">
                 <div id="item1" className="carousel-item w-full image-container">
                     <img src="https://img.freepik.com/free-vector/acoustic-guitar-concept-illustration_114360-12608.jpg?w=2000"  className="w-full"/>
@@ -35,15 +41,19 @@ const Header = () => {
                     </div>
                 </div>
                 </div> 
-                <div className="flex justify-center w-full py-2 gap-2">
+                <div className="flex justify-center w-full py-2 gap-2 mb-10">
                     <a href="#item1" className="btn btn-xs">1</a> 
                     <a href="#item2" className="btn btn-xs">2</a> 
                     <a href="#item3" className="btn btn-xs">3</a> 
                     <a href="#item4" className="btn btn-xs">4</a>
                 </div>
         </div>
-        
-        
+        <div className="">
+            <PopulerTecher></PopulerTecher>
+        </div>
+        <div className="my-10">
+            <PopularStudent></PopularStudent>
+        </div>
         </>
     );
 };

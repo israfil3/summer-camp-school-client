@@ -10,7 +10,7 @@ const SubClass = ({ck}) => {
     const [,refetch] = useCart();
     const navigate = useNavigate();
     const location = useLocation();
-    const {img,class_name,instructor_name,available_seats,price,_id} = ck;
+    const {img,class_name,instructor_name,available_seats,price,_id,studentCount} = ck;
     const SelectClass =() => {
         if(user && user.email){
             const oderItem = {img,class_name,instructor_name,available_seats,price,email: user.email,cartId:_id}
@@ -62,6 +62,7 @@ const SubClass = ({ck}) => {
                             <h2 className="card-title">Class Name: {class_name}</h2>
                             <p>Instructor Name: {instructor_name}</p>
                             <p>Available Seats: {available_seats}</p>
+                            <p>Total Student: {studentCount}</p>
                             <p>price: {price}$</p>
                             <div className="card-actions">
                                 <Link onClick={()=>SelectClass()} className="btn btn-outline btn-primary">Select</Link>
