@@ -8,7 +8,7 @@ import { FaAppStore, FaGooglePlay } from 'react-icons/fa';
 
 const ExtraSection = () => {
     return (
-        <div className="flex mx-auto w-[90%]">
+        <div className="lg:flex mx-auto w-[90%]">
             <div className="mx-auto">
                     <div className="">
                            <h1 className='text-green-900 text-2xl'>Music ALBUM</h1>

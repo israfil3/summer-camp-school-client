@@ -1,5 +1,5 @@
 import { Link, Outlet } from 'react-router-dom';
-import { FaWallet,FaBookOpen,FaBookMedical } from 'react-icons/fa';
+import { FaWallet,FaBookOpen,FaBookMedical, FaMale, FaHome } from 'react-icons/fa';
 import MainAdmin from '../mainAdmin/MainAdmin';
 import InstructorInfo from '../instructor/InstructorInfo';
 
@@ -24,10 +24,10 @@ const Dashboard = () => {
             {
              isAdmin?<>
                       <h1 className='text-center text-3xl my-3 '>Admin Panel</h1>
-                      <Link className="btn btn-outline btn-secondary" to={'adminClass'}> <FaBookMedical></FaBookMedical>Manage Classes</Link>
-                      <Link className="btn btn-outline btn-secondary my-5" to={'adminUser'}> <FaBookOpen></FaBookOpen>Manage Users</Link>
+                      <Link className="btn btn-outline btn-secondary" to={'adminClass'}> <FaMale></FaMale> Manage Users</Link>
+                      <Link className="btn btn-outline btn-secondary my-5" to={'adminUser'}> <FaBookOpen></FaBookOpen>Manage Class</Link>
                       <div className="divider"></div> 
-                      <Link className="btn btn-outline btn-secondary" to={'/home'}>Home</Link>
+                      <Link className="btn btn-outline btn-secondary" to={'/home'}> <FaHome></FaHome>Home</Link>
                 </>:
                 isInstructor?
                 <>
@@ -35,7 +35,8 @@ const Dashboard = () => {
                     <Link className="btn btn-outline btn-secondary" to={'addClass'}> <FaBookMedical></FaBookMedical>Add class</Link>
                     <Link className="btn btn-outline btn-secondary my-5" to={'inClass'}> <FaBookOpen></FaBookOpen>  My Classes</Link>
                     <div className="divider"></div> 
-                    <Link className="btn btn-outline btn-secondary" to={'/home'}>Home</Link>
+                    <Link className="btn btn-outline btn-secondary" to={'/home'}>
+                       <FaHome></FaHome>  Home</Link>
                 </>
                 :
                 <>
@@ -45,7 +46,7 @@ const Dashboard = () => {
                     <Link className="btn btn-outline btn-secondary my-5" to={'enrolClass'}> <FaBookOpen></FaBookOpen>  My Enrolled Classes</Link>
                     <Link className="btn btn-outline btn-secondary" to={'payment'}> <FaWallet></FaWallet> Payment</Link>
                     <div className="divider"></div> 
-                    <Link className="btn btn-outline btn-secondary" to={'/home'}>Home</Link>
+                    <Link className="btn btn-outline btn-secondary" to={'/home'}> <FaHome></FaHome>Home</Link>
                 </>
                 
                 </>

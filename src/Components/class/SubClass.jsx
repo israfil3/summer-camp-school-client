@@ -1,8 +1,10 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../provider/AuthProvider';
 import Swal from 'sweetalert2';
 import useCart from '../lodeCart/UseCart';
+import MainAdmin from '../mainAdmin/MainAdmin';
+import InstructorInfo from '../instructor/InstructorInfo';
 
 
 const SubClass = ({ck}) => {
@@ -10,11 +12,14 @@ const SubClass = ({ck}) => {
     const [,refetch] = useCart();
     const navigate = useNavigate();
     const location = useLocation();
+    const [isAdmin] = MainAdmin();
+    const [isInstructor] = InstructorInfo(); 
     const {img,class_name,instructor_name,available_seats,price,_id,studentCount} = ck;
+    const {isDisabled, setIsDisabled} = useState(false)
     const SelectClass =() => {
         if(user && user.email){
             const oderItem = {img,class_name,instructor_name,available_seats,price,email: user.email,cartId:_id}
-            fetch(`http://localhost:5000/carts`,{
+            fetch(`https://server-israfil3.vercel.app/carts`,{
                 method:"POST",
                 headers:{
                     'content-type': 'application/json'
@@ -32,6 +37,7 @@ const SubClass = ({ck}) => {
                         showConfirmButton: false,
                         timer: 1500
                       })
+                   isDisabled(true)   
                 }
                 
             })
@@ -65,7 +71,11 @@ const SubClass = ({ck}) => {
                             <p>Total Student: {studentCount}</p>
                             <p>price: {price}$</p>
                             <div className="card-actions">
-                                <Link onClick={()=>SelectClass()} className="btn btn-outline btn-primary">Select</Link>
+                               {
+                                isAdmin?<button disabled>Select</button>: 
+                                isInstructor?<button className='btn' disabled>Select</button>:
+                                <Link onClick={()=>SelectClass()} disabled={isDisabled} className="btn btn-outline btn-primary">Select</Link>
+                               }
                             </div>
                         </div>
 

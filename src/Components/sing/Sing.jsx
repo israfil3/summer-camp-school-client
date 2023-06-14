@@ -42,7 +42,7 @@ const Sing = () => {
                 updateUser(name,url)
                 .then(()=> {
                     const userParson = {name: name, email: email}
-                    fetch('http://localhost:5000/parson',{
+                    fetch('https://server-israfil3.vercel.app/parson',{
                         method: 'POST',
                         headers:{
                             'content-type': 'application/json'
@@ -75,7 +75,7 @@ const Sing = () => {
         .then(result => {
             const validParson = result.user;
             const userParson = {name: validParson.displaysName, email:validParson.email}
-                    fetch('http://localhost:5000/parson',{
+                    fetch('https://server-israfil3.vercel.app/parson',{
                         method: 'POST',
                         headers:{
                             'content-type': 'application/json'

@@ -1,12 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import AdminInfo from '../../adminInfo/AdminInfo';
+import { AuthContext } from '../../provider/AuthProvider';
 
 const EnroleClass = () => {
         const [axiosSecure] = AdminInfo();
         const [enrolled,setEnrolled] =useState ([]);
+        const {user} = useContext(AuthContext)
 
     useEffect(()=>{
-        axiosSecure.get('/payments')
+        axiosSecure.get(`/payments/${user?.email}`)
         .then(res => {
             setEnrolled(res.data)
         })

@@ -4,7 +4,7 @@ import { AuthContext } from '../provider/AuthProvider';
 import axios from 'axios';
 
 const axiosSecure = axios.create({
-    baseURL:'http://localhost:5000',
+    baseURL:'https://server-israfil3.vercel.app',
 });
 const AdminInfo = () => {
     const {singOut} = useContext(AuthContext)

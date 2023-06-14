@@ -34,7 +34,7 @@ const Login = () => {
             const validParson = result.user;
             console.log(validParson)
             const userParson = {name:validParson.displayName, email:validParson.email}
-                    fetch('http://localhost:5000/parson',{
+                    fetch('https://server-israfil3.vercel.app/parson',{
                         method: 'POST',
                         headers:{
                             'content-type': 'application/json'

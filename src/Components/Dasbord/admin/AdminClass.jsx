@@ -2,12 +2,12 @@ import { useQuery } from '@tanstack/react-query';;
 import Swal from 'sweetalert2';
 const AdminClass = () => {
        const { data: parson = [], refetch} = useQuery(['parson'], async() => {
-            const res = await fetch('http://localhost:5000/parson')
+            const res = await fetch('https://server-israfil3.vercel.app/parson')
             return res.json();
        }
 )
        const mackAdmin = (pk) => {
-            fetch(`http://localhost:5000/parson/admin/${pk._id}`,{
+            fetch(`https://server-israfil3.vercel.app/parson/admin/${pk._id}`,{
                 method: 'PATCH'
             })
             .then(res => res.json())
@@ -26,7 +26,7 @@ const AdminClass = () => {
                
        };
        const mackInstructor = (pk) => {
-        fetch(`http://localhost:5000/parson/instructor/${pk._id}`,{
+        fetch(`https://server-israfil3.vercel.app/parson/instructor/${pk._id}`,{
             method: 'PATCH'
         })
         .then(res => res.json())

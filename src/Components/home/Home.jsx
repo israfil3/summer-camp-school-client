@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import logo from './My project (4).png'
 import './home.css'
+import { AuthContext } from '../provider/AuthProvider';
 
 const Home = () => {
+  const {user} = useContext(AuthContext)
+  console.log(user)
     return (
         <>
         <div className="navbar bg-green-100 px-10 ">
@@ -29,11 +32,15 @@ const Home = () => {
                       <Link className="btn btn-outline btn-secondary" to={'home'}>Home</Link>
                       <Link className="btn btn-outline btn-success" to={'instructors'}>Instructors</Link>
                       <Link className="btn btn-outline btn-secondary" to={'classes'}>Classes</Link>
-                      <Link className="btn btn-outline btn-secondary" to={'dashboard'}>Dashboard</Link>
+                      {
+                        user?<Link className="btn btn-outline btn-secondary" to={'dashboard'}>Dashboard</Link>:<></>
+                      }
                   </div>
               </div>
               <div className="navbar-end">
-                <Link className="btn btn-outline btn-success" to={'login'}>Log in</Link>
+                {
+                  user?<img className='rounded' src={user?.photoURL} alt=""/>:<Link className="btn btn-outline btn-success" to={'login'}>Log in</Link>
+                }
               </div>
             </div>
         

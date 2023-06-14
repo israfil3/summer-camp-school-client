@@ -43,11 +43,9 @@ const CheckoutForm = ({price,items}) => {
       });
   
       if (error) {
-        console.log('[error]', error);
         setCardError(error.message)
       }
        else {
-        console.log('[PaymentMethod]', paymentMethod);
         setCardError('')
       }
 
@@ -67,7 +65,6 @@ const CheckoutForm = ({price,items}) => {
         if(confirmError){
             setCardError(confirmError)
         }
-        console.log(paymentIntent)
 
         setLoading(false)
         if(paymentIntent.status === 'succeeded'){
@@ -85,7 +82,6 @@ const CheckoutForm = ({price,items}) => {
             }
             axiosSecure.post('/payments', payment)
             .then(res => {
-                console.log(res.data)
                 if(res.data.insertedId){
                   Swal.fire({
                     position: 'center',

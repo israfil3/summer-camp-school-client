@@ -10,7 +10,7 @@ const MyClass = () => {
     const [carts,refetch] = useCart();
     const stripePromise = loadStripe(`${import.meta.env.VITE_pay}`);
         const deleteParson = (items) => {
-            fetch(`http://localhost:5000/carts/${items._id}`,{
+            fetch(`https://server-israfil3.vercel.app/carts/${items._id}`,{
                 method: 'DELETE',
             })
             .then(res => res.json())

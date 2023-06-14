@@ -7,16 +7,18 @@ const PopulerTecher = () => {
         useEffect(()=>{
             axiosSecure('/classes')
             .then(res =>{
-                setPopular(res.data)
+                const sortedClasses = res.data.sort((a, b) => b.studentCount.length - a.studentCount.length);
+                const topClasses = sortedClasses.slice(0, 6);
+                setPopular(topClasses);
             })
         },[])
     return (
         <>
         <h1 className='text-center text-3xl text-rose-900'>Popular Instructors</h1>
-             <div className=" grid lg:grid-cols-6 mx-auto w-[90%] my-10">       
+             <div className="grid sm:grid-cols-1 lg:grid-cols-6 mx-auto lg:w-[90%] lg:my-10">       
                 {
                     popular.map((teacher)=>
-                        <div className="">
+                        <div className="mx-auto">
                             <img className='w-48 h-48' src={teacher.img} alt="" />
                         </div>
                     )

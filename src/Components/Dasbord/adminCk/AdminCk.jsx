@@ -5,7 +5,7 @@ const AdminCk = () => {
     const {user} = useContext(AuthContext)
 
     // useEffect(()=> {
-    //     fetch(`http://localhost:5000/parson/admin/${user.email}`)
+    //     fetch(`https://server-israfil3.vercel.app/parson/admin/${user.email}`)
     //     .then(res=> res.json())
     //     .then(data => {
     //         setAdmin(data)
